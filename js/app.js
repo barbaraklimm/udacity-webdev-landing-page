@@ -1,4 +1,5 @@
-console.log("Hello world");/**
+
+/**
  *
  * Manipulating the DOM exercise.
  * Exercise programmatically builds navigation,
@@ -22,7 +23,8 @@ console.log("Hello world");/**
  * Define Global Variables
  *
 */
-
+const sections = document.getElementsByTagName('section');
+const navbarList = document.getElementById('navbar__list');
 
 /**
  * End Global Variables
@@ -30,6 +32,21 @@ console.log("Hello world");/**
  *
 */
 
+/** Wiederhole nachfolgende Schritte so oft wie die Anzahl an Elementen im Array sections:
+  Erstelle ein Linkelement. Füge als Linktext den Inhalt des Attributs data-nav ein.
+  Füge als Linkziel "#" + ElementID ein
+  Ergänze im Element UL das Linkelement in einem Listenelement als Kindelemente.
+  */
+  for (let section of sections){
+    const currentSection = section;
+    const newListElement = document.createElement('li');
+    const newLinkElement = document.createElement('a');
+    newLinkElement.setAttribute("href", "#" + currentSection.id);
+    newLinkElement.setAttribute("class", "menu__link");
+    newLinkElement.textContent = currentSection.dataset.nav;
+    newListElement.appendChild(newLinkElement);
+    navbarList.appendChild(newListElement);
+  }
 
 
 /**
@@ -37,13 +54,18 @@ console.log("Hello world");/**
  * Begin Main Functions
  *
 */
-
 // build the nav
 
-
-// Add class 'active' to section when near top of viewport
-
-
+document.addEventListener("scroll", function(){
+    for (let section of sections){
+        if (section.getBoundingClientRect().top < (0 + navbarList.offsetHeight)) {
+          section.classList.add("your-active-class");
+        } else {
+          section.classList.remove("your-active-class");
+        }
+    }
+  }
+)
 // Scroll to anchor ID using scrollTO event
 
 
