@@ -25,13 +25,11 @@
 */
 const sections = document.getElementsByTagName('section');
 const navbarList = document.getElementById('navbar__list');
-
 /**
  * End Global Variables
  * Start Helper Functions
  *
 */
-
 /** Wiederhole nachfolgende Schritte so oft wie die Anzahl an Elementen im Array sections:
   Erstelle ein Linkelement. Füge als Linktext den Inhalt des Attributs data-nav ein.
   Füge als Linkziel "#" + ElementID ein
@@ -41,12 +39,22 @@ const navbarList = document.getElementById('navbar__list');
     const currentSection = section;
     const newListElement = document.createElement('li');
     const newLinkElement = document.createElement('a');
-    newLinkElement.setAttribute("href", "#" + currentSection.id);
+    const currentSectionId = currentSection.id;
     newLinkElement.setAttribute("class", "menu__link");
     newLinkElement.textContent = currentSection.dataset.nav;
+    newLinkElement.classList.add(currentSectionId);
+    newLinkElement.addEventListener("click", function(e){
+      window.scrollBy({
+          top: section.getBoundingClientRect().top - navbarList.offsetHeight + 1,
+          left: 0,
+          behavior: 'smooth'
+        });
+      e.preventDefault();
+    });
     newListElement.appendChild(newLinkElement);
     navbarList.appendChild(newListElement);
   }
+
 
 
 /**
@@ -56,18 +64,20 @@ const navbarList = document.getElementById('navbar__list');
 */
 // build the nav
 
+
+
 document.addEventListener("scroll", function(){
     for (let section of sections){
-        if (section.getBoundingClientRect().top < (0 + navbarList.offsetHeight)) {
+        if (section.getBoundingClientRect().top <= navbarList.offsetHeight) {
           section.classList.add("your-active-class");
         } else {
           section.classList.remove("your-active-class");
+
         }
     }
   }
 )
 // Scroll to anchor ID using scrollTO event
-
 
 /**
  * End Main Functions
