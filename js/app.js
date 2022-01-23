@@ -15,26 +15,17 @@
 */
 
 /**
- * Comments should be present at the beginning of each procedure and class.
- * Great to have comments before crucial code sections within the procedure.
-*/
-
-/**
  * Define Global Variables
  *
 */
 const sections = document.getElementsByTagName('section');
 const navbarList = document.getElementById('navbar__list');
-/**
- * End Global Variables
- * Start Helper Functions
- *
-*/
-/** Wiederhole nachfolgende Schritte so oft wie die Anzahl an Elementen im Array sections:
-  Erstelle ein Linkelement. Füge als Linktext den Inhalt des Attributs data-nav ein.
-  Füge als Linkziel "#" + ElementID ein
-  Ergänze im Element UL das Linkelement in einem Listenelement als Kindelemente.
-  */
+
+
+// Build menu
+// build the nav
+// Scroll to anchor ID using scrollTO event
+
   for (let section of sections){
     const currentSection = section;
     const newListElement = document.createElement('li');
@@ -56,37 +47,26 @@ const navbarList = document.getElementById('navbar__list');
   }
 
 
-
-/**
- * End Helper Functions
- * Begin Main Functions
- *
-*/
-// build the nav
-
-
+// Set sections as active
+// Scroll to section on link click
 
 document.addEventListener("scroll", function(){
     for (let section of sections){
         if (section.getBoundingClientRect().top <= navbarList.offsetHeight) {
           section.classList.add("your-active-class");
+          /**The following two lines of code are aktually not working, 
+          but I don't understand why and how to do this right
+          */
+          let currentSectionLink = get.getElementsByTagName("section.id");
+          currentSectionLink.classList.add("menu__link__active");
         } else {
           section.classList.remove("your-active-class");
-
+          /**The following two lines of code are aktually not working,
+          but I don't understand why and how to do this right
+          */
+          let currentSectionLink = get.getElementsByTagName("section.id");
+          currentSectionLink.classList.remove("menu__link__active");
         }
     }
   }
 )
-// Scroll to anchor ID using scrollTO event
-
-/**
- * End Main Functions
- * Begin Events
- *
-*/
-
-// Build menu
-
-// Scroll to section on link click
-
-// Set sections as active
