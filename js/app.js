@@ -47,26 +47,27 @@ const navbarList = document.getElementById('navbar__list');
   }
 
 
-// Set sections as active
+// Set sections and link in navigation bar as active
 // Scroll to section on link click
+document.addEventListener('scroll', function(){
+  const navLinks = navbarList.getElementsByTagName('a');
+  let current;
 
-document.addEventListener("scroll", function(){
     for (let section of sections){
         if (section.getBoundingClientRect().top <= navbarList.offsetHeight) {
-          section.classList.add("your-active-class");
-          /**The following two lines of code are aktually not working, 
-          but I don't understand why and how to do this right
-          */
-          let currentSectionLink = get.getElementsByTagName("section.id");
-          currentSectionLink.classList.add("menu__link__active");
+          section.classList.add('your-active-class');
+          current = section.id;
         } else {
-          section.classList.remove("your-active-class");
-          /**The following two lines of code are aktually not working,
-          but I don't understand why and how to do this right
-          */
-          let currentSectionLink = get.getElementsByTagName("section.id");
-          currentSectionLink.classList.remove("menu__link__active");
+          section.classList.remove('your-active-class');
         }
+    }
+
+    for (let navLink of navLinks){
+      if (navLink.classList.contains(current)){
+        navLink.classList.add('menu__link__active');
+      } else {
+        navLink.classList.remove('menu__link__active');
+      }
     }
   }
 )
