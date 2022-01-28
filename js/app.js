@@ -20,6 +20,7 @@
 */
 const sections = document.getElementsByTagName('section');
 const navList = document.getElementById('navbar__list');
+const navLinks = navList.getElementsByTagName('a');
 // Build menu
 // build the nav
 // Scroll to anchor ID using scrollTO event
@@ -50,7 +51,6 @@ for (const section of sections) {
 // Set sections and link in navigation bar as active
 // Scroll to section on link click
 document.addEventListener('scroll', function() {
-  const navLinks = navList.getElementsByTagName('a');
   let current;
 
   for (const section of sections) {
