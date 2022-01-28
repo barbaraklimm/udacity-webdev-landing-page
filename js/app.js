@@ -14,16 +14,23 @@
  *
 */
 
+
 /**
  * Define Global Variables
  *
 */
+
 const sections = document.getElementsByTagName('section');
 const navList = document.getElementById('navbar__list');
 const navLinks = navList.getElementsByTagName('a');
-// Build menu
-// build the nav
-// Scroll to anchor ID using scrollTO event
+
+
+/** Build navigation bar
+ *
+ * This loop creates menu items for each section in the index.html file.
+ * Each menu item scrolls to its related section when clicked.
+ *
+*/
 
 for (const section of sections) {
   const currentSection = section;
@@ -48,8 +55,14 @@ for (const section of sections) {
 }
 
 
-// Set sections and link in navigation bar as active
-// Scroll to section on link click
+/**
+ *
+ * This eventListener checks on scroll if a section is in the viewport.
+ * If yes, it adds an active state to the section and the related navigation item
+ * and removes it for the other sections.
+ *
+*/
+
 document.addEventListener('scroll', function() {
   let current;
 
