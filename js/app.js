@@ -67,7 +67,7 @@ document.addEventListener('scroll', function() {
   let current;
 
   for (const section of sections) {
-    if (section.getBoundingClientRect().top <= navList.offsetHeight) {
+    if (section.getBoundingClientRect().top <= navList.offsetHeight && section.getBoundingClientRect().bottom > navList.offsetHeight) {
       section.classList.add('your-active-class');
       current = section.id;
     } else {
